@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B289B921CE98CF500152054 /* UI_Room_Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B289B911CE98CF500152054 /* UI_Room_Page.swift */; };
+		7B495CFF1D24108F00692CC7 /* Action_Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B495CFE1D24108F00692CC7 /* Action_Page.swift */; };
 		7B7A6BB91CC8B2C600BAAD68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7A6BB81CC8B2C600BAAD68 /* AppDelegate.swift */; };
 		7B7A6BBB1CC8B2C600BAAD68 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7A6BBA1CC8B2C600BAAD68 /* ViewController.swift */; };
 		7B7A6BBE1CC8B2C600BAAD68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B7A6BBC1CC8B2C600BAAD68 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B289B911CE98CF500152054 /* UI_Room_Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UI_Room_Page.swift; sourceTree = "<group>"; };
+		7B495CFE1D24108F00692CC7 /* Action_Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action_Page.swift; sourceTree = "<group>"; };
 		7B7A6BB51CC8B2C600BAAD68 /* Login.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Login.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B7A6BB81CC8B2C600BAAD68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B7A6BBA1CC8B2C600BAAD68 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,7 +103,9 @@
 			children = (
 				7B7A6BB81CC8B2C600BAAD68 /* AppDelegate.swift */,
 				7B7A6BBA1CC8B2C600BAAD68 /* ViewController.swift */,
+				7B289B911CE98CF500152054 /* UI_Room_Page.swift */,
 				7B7A6BBC1CC8B2C600BAAD68 /* Main.storyboard */,
+				7B495CFE1D24108F00692CC7 /* Action_Page.swift */,
 				7B7A6BBF1CC8B2C600BAAD68 /* Assets.xcassets */,
 				7B7A6BC11CC8B2C600BAAD68 /* LaunchScreen.storyboard */,
 				7B7A6BC41CC8B2C600BAAD68 /* Info.plist */,
@@ -193,6 +199,7 @@
 				TargetAttributes = {
 					7B7A6BB41CC8B2C600BAAD68 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = K53J627LJ4;
 					};
 					7B7A6BC81CC8B2C600BAAD68 = {
 						CreatedOnToolsVersion = 7.3;
@@ -257,6 +264,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B7A6BBB1CC8B2C600BAAD68 /* ViewController.swift in Sources */,
+				7B289B921CE98CF500152054 /* UI_Room_Page.swift in Sources */,
+				7B495CFF1D24108F00692CC7 /* Action_Page.swift in Sources */,
 				7B7A6BB91CC8B2C600BAAD68 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,10 +410,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Login/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GaultierMoraillon.Login;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -412,10 +425,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Login/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GaultierMoraillon.Login;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -484,6 +501,7 @@
 				7B7A6BDF1CC8B2C600BAAD68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7B7A6BE01CC8B2C600BAAD68 /* Build configuration list for PBXNativeTarget "LoginTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +510,7 @@
 				7B7A6BE21CC8B2C600BAAD68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7B7A6BE31CC8B2C600BAAD68 /* Build configuration list for PBXNativeTarget "LoginUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +519,7 @@
 				7B7A6BE51CC8B2C600BAAD68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
