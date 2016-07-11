@@ -22,8 +22,8 @@ class Action_Page: UIViewController {
     var string6 = ""
     var idStatus = 0
     var Array = []
-    var x : CGFloat = 160
-    var y : CGFloat = 200
+    var x : CGFloat = 30
+    var y : CGFloat = 80
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,8 +89,8 @@ class Action_Page: UIViewController {
             idStatus = Int(string4)!
             print(idStatus)
             print(string6)
-            getStatus()
-            createLabel(string6)
+            getStatus(string6)
+            //createLabel(string6)
             string3 = ""
             string4 = ""
             string6 = ""
@@ -101,11 +101,44 @@ class Action_Page: UIViewController {
     func createLabel(string6: String)
     {
         print(string6)
-       
-        
+        let label: UILabel = UILabel()
+        label.frame = CGRectMake(x, y, 200, 21)
+        //label.backgroundColor = UIColor.blackColor()
+        label.textColor = UIColor.blackColor()
+        label.textAlignment = NSTextAlignment.Center
+        label.text = string6
+        self.view.addSubview(label)
+    }
+    
+    func createSwitch(string2: String)
+    {
+        let switchDemo = UISwitch(frame:CGRectMake(200, y, 0, 0));
+        if (string2 == "0" || string2 == "00")
+        {
+        switchDemo.on = true
+        }
+        else {
+            switchDemo.on = false
+        }
+        //switchDemo.setOn(true, animated: false);
+        switchDemo.addTarget(self, action: #selector(Action_Page.switchValueDidChange(_:)), forControlEvents: .ValueChanged);
+        switchDemo.tag = Int(string6)!
+        self.view.addSubview(switchDemo);
+    }
+    
+    func switchValueDidChange(sender:UISwitch!)
+    {
+        if (sender.on == true){
+            print("on")
+            print(sender.tag)
+        }
+        else{
+            print("off")
+            print(sender.tag)
+        }
     }
 
-    func getStatus()
+    func getStatus(string6: String)
     {
         let myUrl = NSURL(string : "http://163.5.84.234:4567/status?id=\(idStatus)")
         let request = NSMutableURLRequest(URL:myUrl!);
@@ -123,6 +156,11 @@ class Action_Page: UIViewController {
             let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
             self.string2 = responseString as! String
             print("Piece status \(self.string2)")
+            dispatch_async(dispatch_get_main_queue(), {
+            self.createLabel(string6)
+            self.createSwitch(self.string2)
+            self.y = self.y + 50
+            })
         }
         task.resume()
     }
