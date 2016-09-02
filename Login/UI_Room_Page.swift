@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-var id = 1
+var id = 0
 
 class Room_Page: UIViewController {
     
@@ -20,15 +20,19 @@ class Room_Page: UIViewController {
     var string2 = ""
     var string3 = ""
     var string4 = ""
+    var stringDigit = ""
+    var stringDigit2:Int = 0
     var arrayOfVillains = []
     var NameRoom: NSMutableArray = []
+    var NameId: NSMutableArray = []
+    var NameType: NSMutableArray = []
     var buttonY: CGFloat = 100  // our Starting Offset, could be 0
     
     
     override func viewDidLoad() {
     super.viewDidLoad()
         
-        let myUrl = NSURL(string: "http://163.5.84.234:4567/rooms");
+        let myUrl = NSURL(string: "http://10.224.9.234:4567/rooms");
         let request = NSMutableURLRequest(URL:myUrl!);
         request.HTTPMethod = "GET";
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request)
@@ -54,36 +58,75 @@ class Room_Page: UIViewController {
     
     func addToArray()
     {
-        self.arrayOfVillains = self.string3.characters.split("\"").map(String.init)
+        self.arrayOfVillains = self.string3.characters.split("}").map(String.init)
+        dump(self.arrayOfVillains)
     }
     
     func DelFromString()
     {
-        string2 = string.stringByReplacingOccurrencesOfString("{", withString: "")
-        string3 = string2.stringByReplacingOccurrencesOfString("}", withString: "")
+        string2 = string.stringByReplacingOccurrencesOfString("[", withString: "")
+        string3 = string2.stringByReplacingOccurrencesOfString("]", withString: "")
+        string2 = string3.stringByReplacingOccurrencesOfString("{", withString: "")
+        //string3 = string2.stringByReplacingOccurrencesOfString(",", withString: "")
+        string3 = string2.stringByReplacingOccurrencesOfString("\"", withString: "")
         print(string3)
     }
     
     func printArray()
     {
         var i = 0
+        //var j = 0
         let b = self.arrayOfVillains.count
         
-        while (i < (b-1))
+        
+        while (i < (b))
         {
             string4 += self.arrayOfVillains[i] as! String
+        
+            if (string4.characters.first == ",")
+            {
+                string4.removeAtIndex((string4.startIndex))
+            }
+            print(string4)
+            
+            stringDigit = string4.stringByReplacingOccurrencesOfString("[^0-9 ]", withString: "", options: NSStringCompareOptions.RegularExpressionSearch, range:nil);
+            NameId.addObject(stringDigit)
+            dump(NameId)
+            
             for char in string4.characters
             {
-                if (char >= "A" && char <= "Z" ){
-                    NameRoom.addObject(string4)
+                if (char == "n"){
                     break
                 }
                 else{
                     string4.removeAtIndex((string4.startIndex))
                 }
             }
+            print(string4)
+            
+            if let dotRange = string4.rangeOfString(",") {
+                string4.removeRange(dotRange.startIndex..<string4.endIndex)
+            }
+            
+            for char in string4.characters
+            {
+                if (char == ":"){
+                    break
+                }
+                else{
+                    string4.removeAtIndex((string4.startIndex))
+                }
+            }
+            
+            if (string4.characters.first == ":")
+            {
+                string4.removeAtIndex((string4.startIndex))
+            }
+            NameRoom.addObject(string4)
+            dump(NameRoom)
             i = i + 1
             string4 = ""
+
         }
     }
     
@@ -98,7 +141,8 @@ class Room_Page: UIViewController {
             vButton.layer.cornerRadius = 10
             vButton.backgroundColor = UIColor.darkGrayColor()
             vButton.setTitle("\(content)", forState: UIControlState.Normal)
-            vButton.tag = id
+            self.stringDigit2 = (self.NameId.objectAtIndex(id)).integerValue as Int
+            vButton.tag = self.stringDigit2
             vButton.addTarget(self, action: #selector(Room_Page.villainButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             
             self.view.addSubview(vButton)
@@ -110,6 +154,7 @@ class Room_Page: UIViewController {
     func villainButtonPressed(sender:UIButton!) {
         string = sender.titleLabel!.text!
         number = sender.tag
+        print("ID:\(number)")
         dispatch_async(dispatch_get_main_queue(), {
           self.performSegueWithIdentifier("Action_Page", sender: self)
         })
