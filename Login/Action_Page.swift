@@ -33,9 +33,22 @@ class Action_Page: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getItems()
+                getItems()
         
     }
+    
+    func refreshList(notification: NSNotification){
+        
+        print("parent method is called")
+    }
+    
+    @IBAction func backAction(sender: AnyObject) {
+       //self.performSegueWithIdentifier("BackSegue", sender: self)
+    }
+    
+    
+    
+    
     
     func addToArray()
     {
@@ -51,7 +64,7 @@ class Action_Page: UIViewController {
     
     func getItems()
     {
-        let myUrl = NSURL(string : "http://10.224.9.234:4567/room?id=\(idsa)")
+        let myUrl = NSURL(string : "http://192.168.1.219:4567/room?id=\(idsa)")
         let request = NSMutableURLRequest(URL:myUrl!);
         request.HTTPMethod = "GET";
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request)
@@ -197,7 +210,7 @@ class Action_Page: UIViewController {
         var j = 0
         for content in NameStatus{
         let switchDemo = UISwitch(frame:CGRectMake(200, i, 0, 0));
-        if (content as! String == "True")
+        if (content as! String == "on")
         {
         switchDemo.on = true
         }
@@ -225,7 +238,7 @@ class Action_Page: UIViewController {
         if (sender.on == true){
             print("on")
             print(sender.tag)
-            let myUrl1 = NSURL(string : "http://163.5.84.234:4567/action")
+            let myUrl1 = NSURL(string : "http://192.168.1.219:4567/action")
             print(myUrl1)
             var stringPost = "{"
             stringPost += "\""
@@ -263,7 +276,7 @@ class Action_Page: UIViewController {
          
             NSLog("PostData: %@",stringPost);
             
-            let url:NSURL = NSURL(string:"http://10.224.9.234:4567/action")!
+            let url:NSURL = NSURL(string:"http://192.168.1.219:4567/action")!
             
             let postData:NSData = stringPost.dataUsingEncoding(NSASCIIStringEncoding)!
             
@@ -308,7 +321,7 @@ class Action_Page: UIViewController {
         else{
             print("off")
             print(sender.tag)
-            let myUrl1 = NSURL(string : "http://163.5.84.234:4567/action")
+            let myUrl1 = NSURL(string : "http://192.168.1.219:4567/action")
             print(myUrl1)
             var stringPost = "{"
             stringPost += "\""
@@ -347,7 +360,7 @@ class Action_Page: UIViewController {
           
             NSLog("PostData: %@",stringPost);
             
-            let url:NSURL = NSURL(string:"http://10.224.9.234:4567/action")!
+            let url:NSURL = NSURL(string:"http://192.168.1.219:4567/action")!
             
             let postData:NSData = stringPost.dataUsingEncoding(NSASCIIStringEncoding)!
             
@@ -392,7 +405,7 @@ class Action_Page: UIViewController {
 
     func getStatus(string6: String, idStatus: Int)
     {
-        let myUrl = NSURL(string : "http://163.5.84.234:4567/status?id=\(idStatus)")
+        let myUrl = NSURL(string : "http://192.168.1.219:4567/status?id=\(idStatus)")
         let request = NSMutableURLRequest(URL:myUrl!);
         request.HTTPMethod = "GET";
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request)
@@ -424,7 +437,10 @@ class Action_Page: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func buttonAction(sender: UIButton!) {
+    @IBAction func Back_action(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+
     }
+    
 
 }

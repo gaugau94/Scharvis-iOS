@@ -102,7 +102,8 @@ class ViewController: UIViewController {
             
             NSLog("PostData: %@",stringPost);
             
-            let url:NSURL = NSURL(string:"http://10.224.9.234:4567/login")!
+            //let url:NSURL = NSURL(string:"http://10.224.9.234:4567/login")!
+             let url:NSURL = NSURL(string:"http://192.168.1.219:4567/login")!
             
             let postData:NSData = stringPost.dataUsingEncoding(NSASCIIStringEncoding)!
             
@@ -163,7 +164,7 @@ class ViewController: UIViewController {
         }
     }
     @IBOutlet weak var Home: UISwitch!
-    @IBAction func IsHome(sender: AnyObject) {
+   /* @IBAction func IsHome(sender: AnyObject) {
         if Home.on {
             myUrl = NSURL(string: "http://10.224.9.234:4567/login")!;
         }
@@ -172,7 +173,7 @@ class ViewController: UIViewController {
         }
         print(myUrl)
     }
-    
+    */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "segueIdentifier"{
            let DestinationController = segue.destinationViewController as? Room_Page

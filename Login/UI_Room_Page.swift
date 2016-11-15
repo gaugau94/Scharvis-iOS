@@ -31,8 +31,8 @@ class Room_Page: UIViewController {
     
     override func viewDidLoad() {
     super.viewDidLoad()
-        
-        let myUrl = NSURL(string: "http://10.224.9.234:4567/rooms");
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Room_Page.refreshList(_:)), name:"refresh", object: nil)
+        let myUrl = NSURL(string: "http://192.168.1.219:4567/rooms");
         let request = NSMutableURLRequest(URL:myUrl!);
         request.HTTPMethod = "GET";
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request)
@@ -54,6 +54,11 @@ class Room_Page: UIViewController {
             self.addStartingButtons()
         }
         task.resume()
+    }
+    
+    func refreshList(notification: NSNotification){
+        
+        print("parent method is called")
     }
     
     func addToArray()
