@@ -20,7 +20,6 @@ class ViewController: UIViewController {
         let backgroundImage = UIImageView(frame: UIScreen.mainScreen().bounds)
         backgroundImage.image = UIImage(named: "fond1.png")
         self.view.insertSubview(backgroundImage, atIndex: 0)
-         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "fond1.png")!)
         // Do any additional setup after loading the view, typically from a nib.
         
     }
